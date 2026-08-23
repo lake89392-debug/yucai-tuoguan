@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="育才托管日常 — 午餐休息、奖状合影、户外游玩、新年音乐会、学习氛围与健康美食。">
+  <title>育才托管 · 欢迎您</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #1f9a55;
+      --green-deep: #007a41;
+      --green-soft: #e8f5ef;
+      --sky: #3aa0c8;
+      --ink: #1c2b26;
+      --muted: #5c6f68;
+      --line: rgba(0, 122, 65, 0.16);
+      --paper: #fbfdfc;
+      --white: #ffffff;
+      --welcome: #d6453d;
+      --font-display: "ZCOOL XiaoWei", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --radius: 12px;
+      --max: 720px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      background:
+        radial-gradient(ellipse 80% 50% at 0% 0%, rgba(58, 160, 200, 0.12), transparent 55%),
+        radial-gradient(ellipse 70% 45% at 100% 10%, rgba(31, 122, 92, 0.1), transparent 50%),
+        linear-gradient(180deg, #eef7f3 0%, var(--paper) 28%, #f3faf7 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(31, 122, 92, 0.06) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 80% 70%, rgba(58, 160, 200, 0.07) 0 1px, transparent 1.5px);
+      background-size: 28px 28px, 36px 36px;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+
+    /* —— Hero：品牌优先 —— */
+    .hero {
+      padding: 40px 22px 28px;
+      text-align: center;
+      animation: rise 0.7s ease both;
+    }
+
+    .brand {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 8vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--green-deep);
+      line-height: 1.15;
+    }
+
+    .brand-mark {
+      display: block;
+      width: 40px;
+      height: 3px;
+      margin: 14px auto 18px;
+      background: linear-gradient(90deg, var(--green), var(--sky));
+      border-radius: 2px;
+      animation: grow 0.8s 0.25s ease both;
+      transform-origin: center;
+    }
+
+    .hero-title {
+      margin: 0 0 12px;
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 6.5vw, 2.45rem);
+      font-weight: 400;
+      color: var(--green-deep);
+      letter-spacing: 0.14em;
+      line-height: 1.2;
+    }
+
+    .hero-desc {
+      margin: 0 auto;
+      max-width: 22em;
+      font-size: 0.95rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* —— 内容区 —— */
+    .content {
+      padding: 8px 18px 56px;
+    }
+
+    @media (min-width: 721px) {
+      .page {
+        margin-top: 20px;
+        margin-bottom: 40px;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        box-shadow: 0 12px 40px rgba(22, 90, 68, 0.06);
+      }
+      .hero { padding: 48px 40px 32px; }
+      .content { padding: 8px 40px 64px; }
+    }
+
+    .section {
+      margin: 0 0 36px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-label {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin: 0 0 12px;
+    }
+
+    .section-num {
+      flex-shrink: 0;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--sky);
+      letter-spacing: 0.04em;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: var(--green-deep);
+      letter-spacing: 0.04em;
+      line-height: 1.45;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: min(100%, 378px); /* 420px × 0.9 */
+      margin: 8px auto 6px;
+      aspect-ratio: 9 / 16;
+      max-height: min(64.8vh, 648px); /* × 0.9 */
+      overflow: hidden;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(145deg, #dff0e8 0%, #d4ebf5 100%);
+      border: 1px solid rgba(31, 122, 92, 0.1);
+      box-shadow: 0 4px 16px rgba(22, 90, 68, 0.07);
+    }
+
+    .video-wrap video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      background: transparent;
+      vertical-align: top;
+    }
+
+    .video-poster {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      pointer-events: none;
+    }
+
+    /* 奖状合影：铺满卡片，裁切偏上以多留顶部文字 */
+    .video-wrap--focus-top video,
+    .video-wrap--focus-top .video-poster {
+      object-fit: cover;
+      object-position: center 20%;
+    }
+
+    .video-wrap.is-playing .video-poster,
+    .video-wrap.has-started .video-poster {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* 公众号风格：中央半透明圆 + 三角播放钮 */
+    .video-play-btn {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .video-play-btn:focus-visible {
+      outline: none;
+    }
+
+    .video-play-btn:focus-visible .video-play-circle {
+      box-shadow: 0 0 0 3px rgba(58, 160, 200, 0.55);
+    }
+
+    .video-play-circle {
+      position: relative;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.48);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+      pointer-events: auto;
+    }
+
+    .video-play-btn:hover .video-play-circle,
+    .video-play-btn:active .video-play-circle {
+      background: rgba(0, 0, 0, 0.62);
+      transform: scale(1.04);
+    }
+
+    .video-play-triangle {
+      display: block;
+      width: 0;
+      height: 0;
+      margin-left: 4px;
+      border-style: solid;
+      border-width: 11px 0 11px 18px;
+      border-color: transparent transparent transparent #fff;
+      transition: opacity 0.15s ease;
+    }
+
+    .video-wrap.is-loading .video-play-triangle {
+      opacity: 0;
+    }
+
+    .video-wrap.is-loading .video-play-circle::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 26px;
+      height: 26px;
+      margin: -13px 0 0 -13px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+
+    .video-wrap.is-loading .video-play-btn {
+      pointer-events: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* 播放中 / 已开始过（含暂停）：隐藏自定义大按钮，避免与系统控件三角叠层 */
+    .video-wrap.is-playing .video-play-btn,
+    .video-wrap.has-started .video-play-btn {
+      display: none;
+    }
+
+    /* 右上角一键静音 / 恢复声音 */
+    .video-mute-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 4;
+      width: 40px;
+      height: 40px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.48);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .video-mute-btn:hover,
+    .video-mute-btn:active {
+      background: rgba(0, 0, 0, 0.62);
+      transform: scale(1.04);
+    }
+
+    .video-mute-btn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(58, 160, 200, 0.55);
+    }
+
+    .video-mute-btn svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .video-mute-btn .mute-slash {
+      fill: none;
+      stroke: #e53935;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+    }
+
+    .video-mute-btn .icon-muted {
+      display: none;
+    }
+
+    .video-mute-btn.is-muted .icon-sound {
+      display: none;
+    }
+
+    .video-mute-btn.is-muted .icon-muted {
+      display: block;
+    }
+
+    @media (max-width: 480px) {
+      .video-play-circle {
+        width: 58px;
+        height: 58px;
+      }
+      .video-play-triangle {
+        border-width: 9px 0 9px 15px;
+        margin-left: 3px;
+      }
+      .video-mute-btn {
+        width: 36px;
+        height: 36px;
+        top: 8px;
+        right: 8px;
+      }
+      .video-mute-btn svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    /* —— 美食 —— */
+    .food-intro {
+      margin: 0 0 16px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .food-intro .intro-smile {
+      display: inline-block;
+      width: 1.15em;
+      height: 1.15em;
+      margin-left: 0.15em;
+      vertical-align: -0.2em;
+      object-fit: contain;
+    }
+
+    .food-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    @media (min-width: 560px) {
+      .food-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .food-grid .food-item:nth-child(1),
+      .food-grid .food-item:nth-child(4),
+      .food-grid .food-item:nth-child(5) {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .food-item {
+      margin: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--green-soft);
+    }
+
+    .food-item img {
+      display: block;
+      width: 100%;
+      height: auto;
+      vertical-align: top;
+      transform: scale(1);
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    .section.is-visible .food-item:nth-child(1) img {
+      animation: food-zoom 4.5s ease-in-out infinite alternate;
+    }
+    .section.is-visible .food-item:nth-child(2) img {
+      animation: food-zoom 5s ease-in-out 0.15s infinite alternate;
+    }
+    .section.is-visible .food-item:nth-child(3) img {
+      animation: food-zoom 4.8s ease-in-out 0.3s infinite alternate;
+    }
+    .section.is-visible .food-item:nth-child(4) img {
+      animation: food-zoom 5.2s ease-in-out 0.1s infinite alternate;
+    }
+    .section.is-visible .food-item:nth-child(5) img {
+      animation: food-zoom 4.6s ease-in-out 0.25s infinite alternate;
+    }
+
+    @keyframes food-zoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.12); }
+    }
+
+    /* —— 海报 —— */
+    .poster-block {
+      margin: 8px 0 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 28px rgba(22, 90, 68, 0.1);
+    }
+
+    .poster-block img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* —— 欢迎与地址 —— */
+    .closing {
+      margin-top: 8px;
+      padding: 28px 20px 8px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+
+    .welcome {
+      margin: 0 0 14px;
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 4vw, 1.6rem);
+      color: var(--welcome);
+      letter-spacing: 0.1em;
+    }
+
+    .address {
+      margin: 0 0 8px;
+      font-size: 0.98rem;
+      color: var(--green-deep);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-link {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      background: linear-gradient(135deg, var(--green-deep), var(--green));
+      border-radius: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(31, 122, 92, 0.28);
+    }
+
+    .nav-hint {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .qr-block {
+      margin: 28px auto 12px;
+      max-width: 200px;
+    }
+
+    .qr-block img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(22, 90, 68, 0.08);
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes grow {
+      from { transform: scaleX(0); opacity: 0; }
+      to { transform: scaleX(1); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .section {
+        opacity: 1;
+        transform: none;
+      }
+      .food-item img {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <p class="brand">育才托管</p>
+      <span class="brand-mark" aria-hidden="true"></span>
+      <h1 class="hero-title">欢迎您</h1>
+      <p class="hero-desc">用心托付 · 用爱陪伴 · 助力成长</p>
+    </header>
+
+    <main class="content">
+      <section class="section" data-reveal>
+        <div class="section-label">
+          <span class="section-num">01</span>
+          <h2 class="section-title">我们的健康美食</h2>
+        </div>
+        <p class="food-intro">新鲜备餐，营养均衡，让孩子们吃得放心、吃得开心。</p>
+        <div class="food-grid">
+          <figure class="food-item">
+            <img src="./我们的健康美食及海报图片/photo1.jpg" alt="健康美食照片1" loading="lazy">
+          </figure>
+          <figure class="food-item">
+            <img src="./我们的健康美食及海报图片/photo2.jpg" alt="健康美食照片2" loading="lazy">
+          </figure>
+          <figure class="food-item">
+            <img src="./我们的健康美食及海报图片/photo3.jpg" alt="健康美食照片3" loading="lazy">
+          </figure>
+          <figure class="food-item">
+            <img src="./我们的健康美食及海报图片/photo4.jpg" alt="健康美食照片4" loading="lazy">
+          </figure>
+          <figure class="food-item">
+            <img src="./我们的健康美食及海报图片/photo5.jpg" alt="健康美食照片5" loading="lazy">
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="section-label">
+          <span class="section-num">02</span>
+          <h2 class="section-title">我们的寝室</h2>
+        </div>
+        <p class="food-intro">整洁干净、舒适。</p>
+        <div class="food-grid">
+          <figure class="food-item">
+            <img src="./我们的健康美食及海报图片/Dorm1.jpg" alt="寝室环境照片1" loading="lazy">
+          </figure>
+          <figure class="food-item">
+            <img src="./我们的健康美食及海报图片/Dorm2.jpg" alt="寝室环境照片2" loading="lazy">
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="section-label">
+          <span class="section-num">03</span>
+          <h2 class="section-title">我们的学习氛围</h2>
+        </div>
+        <div class="video-wrap">
+          <img class="video-poster" src="./我们的健康美食及海报图片/cover5.jpg" alt="" loading="lazy">
+          <video playsinline preload="none" controlslist="nodownload" data-name="教室的学习氛围.mp4" poster="./我们的健康美食及海报图片/cover5.jpg" title="我们的学习氛围"></video>
+          <button type="button" class="video-play-btn" aria-label="播放：我们的学习氛围">
+            <span class="video-play-circle"><span class="video-play-triangle" aria-hidden="true"></span></span>
+          </button>
+          <button type="button" class="video-mute-btn" aria-label="静音" aria-pressed="false" title="静音">
+            <svg class="icon-sound" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.74 2.5-2.26 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+            <svg class="icon-muted" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.74 2.5-2.26 2.5-4.02z"/>
+              <path class="mute-slash" d="M4 4 L20 20"/>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="section-label">
+          <span class="section-num">04</span>
+          <h2 class="section-title">午餐休息</h2>
+        </div>
+        <div class="video-wrap">
+          <img class="video-poster" src="./我们的健康美食及海报图片/cover1.jpg" alt="" loading="lazy">
+          <video playsinline preload="none" controlslist="nodownload" data-name="午餐休息.mp4" poster="./我们的健康美食及海报图片/cover1.jpg" title="午餐休息"></video>
+          <button type="button" class="video-play-btn" aria-label="播放：午餐休息">
+            <span class="video-play-circle"><span class="video-play-triangle" aria-hidden="true"></span></span>
+          </button>
+          <button type="button" class="video-mute-btn" aria-label="静音" aria-pressed="false" title="静音">
+            <svg class="icon-sound" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.74 2.5-2.26 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+            <svg class="icon-muted" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.74 2.5-2.26 2.5-4.02z"/>
+              <path class="mute-slash" d="M4 4 L20 20"/>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="section-label">
+          <span class="section-num">05</span>
+          <h2 class="section-title">奖状合影</h2>
+        </div>
+        <p class="food-intro">小小奖状，我的勋章</p>
+        <div class="video-wrap video-wrap--focus-top">
+          <img class="video-poster" src="./我们的健康美食及海报图片/cover2.jpg" alt="" loading="lazy">
+          <video playsinline preload="none" controlslist="nodownload" data-name="奖状合影.mp4" poster="./我们的健康美食及海报图片/cover2.jpg" title="奖状合影"></video>
+          <button type="button" class="video-play-btn" aria-label="播放：奖状合影">
+            <span class="video-play-circle"><span class="video-play-triangle" aria-hidden="true"></span></span>
+          </button>
+          <button type="button" class="video-mute-btn" aria-label="静音" aria-pressed="false" title="静音">
+            <svg class="icon-sound" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.74 2.5-2.26 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+            <svg class="icon-muted" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.74 2.5-2.26 2.5-4.02z"/>
+              <path class="mute-slash" d="M4 4 L20 20"/>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="section-label">
+          <span class="section-num">06</span>
+          <h2 class="section-title">冬日户外游玩</h2>
+        </div>
+        <div class="video-wrap">
+          <img class="video-poster" src="./我们的健康美食及海报图片/cover3.jpg" alt="" loading="lazy">
+          <video playsinline preload="none" controlslist="nodownload" data-name="冬日户外游玩.mp4" poster="./我们的健康美食及海报图片/cover3.jpg" title="冬日户外游玩"></video>
+          <button type="button" class="video-play-btn" aria-label="播放：冬日户外游玩">
+            <span class="video-play-circle"><span class="video-play-triangle" aria-hidden="true"></span></span>
+          </button>
+          <button type="button" class="video-mute-btn" aria-label="静音" aria-pressed="false" title="静音">
+            <svg class="icon-sound" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.74 2.5-2.26 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+            <svg class="icon-muted" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.74 2.5-2.26 2.5-4.02z"/>
+              <path class="mute-slash" d="M4 4 L20 20"/>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="section-label">
+          <span class="section-num">07</span>
+          <h2 class="section-title">新年音乐会，我们的开学仪式</h2>
+        </div>
+        <p class="food-intro">每年春季开学日，看见孩子们自信成长的模样<img class="intro-smile" src="./我们的健康美食及海报图片/笑脸.png" alt=""></p>
+        <div class="video-wrap">
+          <img class="video-poster" src="./我们的健康美食及海报图片/cover4.jpg" alt="" loading="lazy">
+          <video playsinline preload="none" controlslist="nodownload" data-name="新年音乐会，我们的开学仪式.mp4" poster="./我们的健康美食及海报图片/cover4.jpg" title="新年音乐会，我们的开学仪式"></video>
+          <button type="button" class="video-play-btn" aria-label="播放：新年音乐会，我们的开学仪式">
+            <span class="video-play-circle"><span class="video-play-triangle" aria-hidden="true"></span></span>
+          </button>
+          <button type="button" class="video-mute-btn" aria-label="静音" aria-pressed="false" title="静音">
+            <svg class="icon-sound" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.74 2.5-2.26 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+            <svg class="icon-muted" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.74 2.5-2.26 2.5-4.02z"/>
+              <path class="mute-slash" d="M4 4 L20 20"/>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="poster-block">
+          <img src="./我们的健康美食及海报图片/photo7(poster).jpg" alt="育才托管中心招生海报" loading="lazy">
+        </div>
+      </section>
+
+      <section class="closing section" data-reveal>
+        <p class="welcome">育才托管欢迎您</p>
+        <p class="address">地址：合水中心小学门口西南60米，红书街</p>
+        <a
+          class="nav-link"
+          href="https://uri.amap.com/marker?position=111.876251,22.308187&name=%E8%82%B2%E6%89%8D%E6%A0%91%E4%BA%BA%E6%89%98%E7%AE%A1%E4%B8%AD%E5%BF%83&src=yucai&coordinate=gaode&callnative=1"
+          target="_blank"
+          rel="noopener noreferrer">
+          育才树人托管中心
+        </a>
+        <span class="nav-hint">点击可打开地图导航</span>
+        <div class="qr-block">
+          <img src="./招生老师电话.png" alt="招生老师电话二维码" loading="lazy" width="200" height="200">
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      /**
+       * 视频出站：读取根目录 videos.jsonl（内含 provider 标记）
+       * - 默认部署：复制 tencent/videos.jsonl → videos.jsonl
+       * - 切 R2：复制 r2/videos.jsonl → videos.jsonl
+       * 源文件分别在 tencent/ 与 r2/ 文件夹维护。
+       */
+      var VIDEOS_JSONL = "./videos.jsonl";
+      var HLS_JS_SRC = "https://cdn.jsdelivr.net/npm/hls.js@1.5.17/dist/hls.min.js";
+      var hlsLibPromise = null;
+      var hlsByVideo = typeof WeakMap !== "undefined" ? new WeakMap() : null;
+
+      var provider = "tencent";
+      var hlsQuality = "720";
+      var r2Base = "";
+      var catalog = {};
+
+      var videos = Array.prototype.slice.call(
+        document.querySelectorAll(".video-wrap video")
+      );
+
+      function parseJsonl(text) {
+        var lines = text.split(/\r?\n/);
+        for (var i = 0; i < lines.length; i++) {
+          var line = lines[i].trim();
+          if (!line) continue;
+          var row;
+          try {
+            row = JSON.parse(line);
+          } catch (e) {
+            continue;
+          }
+          if (row.type === "meta") {
+            if (row.provider) provider = String(row.provider).toLowerCase();
+            if (row.quality) hlsQuality = String(row.quality);
+            if (row.base) r2Base = String(row.base);
+            continue;
+          }
+          if (row.name) catalog[row.name] = row;
+        }
+      }
+
+      function loadCatalog() {
+        return fetch(VIDEOS_JSONL, { cache: "no-cache" }).then(function (res) {
+          if (!res.ok) throw new Error("videos.jsonl " + res.status);
+          return res.text();
+        }).then(function (text) {
+          parseJsonl(text);
+          if (!provider) provider = "tencent";
+        });
+      }
+
+      function videoUrl(video) {
+        var name = video.getAttribute("data-name");
+        if (!name) return "";
+        var entry = catalog[name];
+
+        if (provider === "r2") {
+          if (entry && entry.url) return entry.url;
+          if (!r2Base) return "";
+          return r2Base + encodeURIComponent(name).replace(/%2F/gi, "/");
+        }
+
+        /* tencent HLS */
+        if (!entry || !entry.hls) return "";
+        var hls = entry.hls;
+        return hls[hlsQuality] || hls["720"] || hls["540"] || "";
+      }
+
+      function canPlayNativeHls(video) {
+        return video.canPlayType("application/vnd.apple.mpegurl") !== "";
+      }
+
+      function loadHlsLib() {
+        if (window.Hls) return Promise.resolve(window.Hls);
+        if (hlsLibPromise) return hlsLibPromise;
+        hlsLibPromise = new Promise(function (resolve, reject) {
+          var s = document.createElement("script");
+          s.src = HLS_JS_SRC;
+          s.async = true;
+          s.onload = function () {
+            if (window.Hls) resolve(window.Hls);
+            else reject(new Error("Hls missing"));
+          };
+          s.onerror = function () {
+            hlsLibPromise = null;
+            reject(new Error("hls.js load failed"));
+          };
+          document.head.appendChild(s);
+        });
+        return hlsLibPromise;
+      }
+
+      function destroyHls(video) {
+        if (!hlsByVideo) return;
+        var hls = hlsByVideo.get(video);
+        if (hls) {
+          hls.destroy();
+          hlsByVideo.delete(video);
+        }
+      }
+
+      function unloadVideo(video) {
+        destroyHls(video);
+        video.removeAttribute("data-src-url");
+        video.removeAttribute("src");
+        try {
+          video.load();
+        } catch (e) { /* ignore */ }
+      }
+
+      function bindReady(video, resolve, reject) {
+        var settled = false;
+        function done(ok) {
+          if (settled) return;
+          settled = true;
+          video.removeEventListener("canplay", onReady);
+          video.removeEventListener("loadeddata", onReady);
+          video.removeEventListener("error", onErr);
+          ok ? resolve() : reject(new Error("load failed"));
+        }
+        function onReady() { done(true); }
+        function onErr() { done(false); }
+        video.addEventListener("canplay", onReady);
+        video.addEventListener("loadeddata", onReady);
+        video.addEventListener("error", onErr);
+        if (video.readyState >= 2) done(true);
+      }
+
+      /** R2：直链 MP4 */
+      function ensureLoadedR2(video, url) {
+        destroyHls(video);
+        video.preload = "auto";
+        video.setAttribute("data-src-url", url);
+        return new Promise(function (resolve, reject) {
+          bindReady(video, resolve, reject);
+          if (video.getAttribute("src") !== url) video.src = url;
+          video.load();
+        });
+      }
+
+      /** 腾讯云：HLS（原生或 hls.js） */
+      function ensureLoadedTencent(video, url) {
+        destroyHls(video);
+        video.preload = "auto";
+        video.setAttribute("data-src-url", url);
+
+        if (canPlayNativeHls(video)) {
+          return new Promise(function (resolve, reject) {
+            bindReady(video, resolve, reject);
+            if (video.getAttribute("src") !== url) video.src = url;
+            video.load();
+          });
+        }
+
+        return loadHlsLib().then(function (Hls) {
+          if (!Hls.isSupported()) {
+            return Promise.reject(new Error("HLS unsupported"));
+          }
+          return new Promise(function (resolve, reject) {
+            var hls = new Hls({
+              maxBufferLength: 30,
+              maxMaxBufferLength: 60,
+              enableWorker: true
+            });
+            if (hlsByVideo) hlsByVideo.set(video, hls);
+            hls.on(Hls.Events.ERROR, function (_e, data) {
+              if (data && data.fatal) {
+                destroyHls(video);
+                reject(new Error("hls fatal"));
+              }
+            });
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+              bindReady(video, resolve, reject);
+            });
+            hls.loadSource(url);
+            hls.attachMedia(video);
+          });
+        });
+      }
+
+      /** 点击后再加载，避免一打开就同时请求多路 */
+      function ensureLoaded(video) {
+        var url = videoUrl(video);
+        if (!url) return Promise.reject(new Error("no url"));
+        if (
+          video.getAttribute("data-src-url") === url &&
+          video.readyState >= 2
+        ) {
+          return Promise.resolve();
+        }
+        if (provider === "r2") return ensureLoadedR2(video, url);
+        return ensureLoadedTencent(video, url);
+      }
+
+      function pauseOthers(current) {
+        videos.forEach(function (other) {
+          if (other === current) return;
+          if (!other.paused) other.pause();
+          if (other.getAttribute("data-src-url") || other.getAttribute("src")) {
+            unloadVideo(other);
+            var otherWrap = other.closest(".video-wrap");
+            if (otherWrap) {
+              otherWrap.classList.remove("is-playing", "has-started", "is-loading");
+              other.removeAttribute("controls");
+            }
+          }
+        });
+      }
+
+      /** 防挂机：暂停并卸流，停止继续拉流量 */
+      var IDLE_MS = 3 * 60 * 1000;
+      var idleTimer = null;
+
+      function clearIdleTimer() {
+        if (idleTimer) {
+          clearTimeout(idleTimer);
+          idleTimer = null;
+        }
+      }
+
+      function stopVideoHard(video) {
+        if (!video) return;
+        try {
+          if (!video.paused) video.pause();
+        } catch (e) { /* ignore */ }
+        unloadVideo(video);
+        var wrap = video.closest(".video-wrap");
+        if (wrap) {
+          wrap.classList.remove("is-playing", "has-started", "is-loading");
+          video.removeAttribute("controls");
+        }
+      }
+
+      function stopAllVideosHard() {
+        videos.forEach(stopVideoHard);
+        clearIdleTimer();
+      }
+
+      function anyVideoPlaying() {
+        return videos.some(function (v) {
+          return v && !v.paused && !v.ended;
+        });
+      }
+
+      function bumpIdleTimer() {
+        clearIdleTimer();
+        if (!anyVideoPlaying()) return;
+        idleTimer = setTimeout(function () {
+          idleTimer = null;
+          if (anyVideoPlaying()) stopAllVideosHard();
+        }, IDLE_MS);
+      }
+
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) stopAllVideosHard();
+      });
+
+      window.addEventListener("pagehide", function () {
+        stopAllVideosHard();
+      });
+
+      function bindVideoUi() {
+        document.querySelectorAll(".video-wrap").forEach(function (wrap) {
+          var video = wrap.querySelector("video");
+          var playBtn = wrap.querySelector(".video-play-btn");
+          var muteBtn = wrap.querySelector(".video-mute-btn");
+          if (!video || !playBtn) return;
+
+          var pauseTimer = null;
+
+          function syncMuteUi() {
+            if (!muteBtn) return;
+            var muted = !!video.muted || video.volume === 0;
+            muteBtn.classList.toggle("is-muted", muted);
+            muteBtn.setAttribute("aria-pressed", muted ? "true" : "false");
+            muteBtn.setAttribute("aria-label", muted ? "恢复声音" : "静音");
+            muteBtn.setAttribute("title", muted ? "恢复声音" : "静音");
+          }
+
+          if (muteBtn) {
+            syncMuteUi();
+            muteBtn.addEventListener("click", function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              video.muted = !video.muted;
+              if (!video.muted && video.volume === 0) video.volume = 1;
+              syncMuteUi();
+              bumpIdleTimer();
+            });
+            video.addEventListener("volumechange", syncMuteUi);
+          }
+
+          function enterPlaying() {
+            if (pauseTimer) {
+              clearTimeout(pauseTimer);
+              pauseTimer = null;
+            }
+            wrap.classList.remove("is-loading");
+            wrap.classList.add("is-playing", "has-started");
+            video.setAttribute("controls", "");
+            bumpIdleTimer();
+          }
+
+          function leavePlaying() {
+            wrap.classList.remove("is-playing");
+            if (!wrap.classList.contains("has-started")) {
+              video.removeAttribute("controls");
+            }
+            if (!anyVideoPlaying()) clearIdleTimer();
+          }
+
+          function resetToStartUi() {
+            if (pauseTimer) {
+              clearTimeout(pauseTimer);
+              pauseTimer = null;
+            }
+            wrap.classList.remove("is-playing", "has-started", "is-loading");
+            video.removeAttribute("controls");
+            if (!anyVideoPlaying()) clearIdleTimer();
+          }
+
+          playBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (wrap.classList.contains("is-loading")) return;
+
+            pauseOthers(video);
+            wrap.classList.add("is-loading");
+            bumpIdleTimer();
+
+            ensureLoaded(video)
+              .then(function () {
+                enterPlaying();
+                return video.play();
+              })
+              .catch(function () {
+                wrap.classList.remove("is-loading");
+                leavePlaying();
+                alert("视频加载失败，请检查网络后重试");
+              });
+          });
+
+          video.addEventListener("play", function () {
+            enterPlaying();
+            videos.forEach(function (other) {
+              if (other !== video && !other.paused) other.pause();
+            });
+          });
+
+          video.addEventListener("pause", function () {
+            if (video.ended || video.seeking) return;
+            if (pauseTimer) clearTimeout(pauseTimer);
+            pauseTimer = setTimeout(function () {
+              pauseTimer = null;
+              if (!video.paused || video.ended || video.seeking) return;
+              leavePlaying();
+            }, 280);
+          });
+
+          video.addEventListener("seeking", function () {
+            if (pauseTimer) {
+              clearTimeout(pauseTimer);
+              pauseTimer = null;
+            }
+            bumpIdleTimer();
+          });
+
+          video.addEventListener("seeked", function () {
+            if (pauseTimer) {
+              clearTimeout(pauseTimer);
+              pauseTimer = null;
+            }
+            if (!video.paused && !video.ended) enterPlaying();
+          });
+
+          video.addEventListener("ended", function () {
+            video.currentTime = 0;
+            unloadVideo(video);
+            resetToStartUi();
+          });
+
+          wrap.addEventListener("pointerdown", function () {
+            if (!video.paused) bumpIdleTimer();
+          });
+        });
+      }
+
+      function bindReveal() {
+        var revealEls = document.querySelectorAll("[data-reveal]");
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+          );
+          revealEls.forEach(function (el) { io.observe(el); });
+        } else {
+          revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+        }
+      }
+
+      bindReveal();
+
+      loadCatalog()
+        .then(function () {
+          bindVideoUi();
+        })
+        .catch(function () {
+          alert("无法加载 videos.jsonl。请用本地网页服务打开（不要直接双击文件），并确认根目录有 videos.jsonl。");
+        });
+    })();
+  </script>
+</body>
+</html>
