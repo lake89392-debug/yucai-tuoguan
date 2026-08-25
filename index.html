@@ -1169,5 +1169,18 @@
         });
     })();
   </script>
+
+  <!-- 访问统计（百度统计）：https://tongji.baidu.com 添加站点后，把 hm.js? 后面的 ID 填到下面 -->
+  <script>
+    (function () {
+      var siteId = "05d70b97f943e04b2bcb899db79ce61d";
+      if (!siteId || siteId.indexOf("YOUR_") === 0) return;
+      window._hmt = window._hmt || [];
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?" + siteId;
+      hm.async = true;
+      document.head.appendChild(hm);
+    })();
+  </script>
 </body>
 </html>
