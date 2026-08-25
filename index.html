@@ -555,9 +555,48 @@
         transform: none !important;
       }
     }
+
+    html.geo-pending .page {
+      visibility: hidden;
+    }
   </style>
 </head>
 <body>
+  <script>
+    (function () {
+      var host = location.hostname;
+      if (host !== "yucai-centre.onrender.com" && !/\.onrender\.com$/i.test(host)) return;
+
+      document.documentElement.classList.add("geo-pending");
+
+      function showBlocked() {
+        document.documentElement.classList.remove("geo-pending");
+        document.title = "Service Temporarily Unavailable";
+        document.body.innerHTML =
+          '<div style="margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;background:#f5f5f5;color:#333;text-align:center;padding:24px">' +
+          "<div><h1 style=\"font-size:1.25rem;font-weight:600;margin:0 0 8px\">Service Temporarily Unavailable</h1>" +
+          '<p style="margin:0;color:#666;font-size:0.95rem;line-height:1.6">Please try again later.</p></div></div>';
+      }
+
+      function allow() {
+        document.documentElement.classList.remove("geo-pending");
+      }
+
+      fetch("https://api.ip.sb/geoip", { cache: "no-store" })
+        .then(function (r) {
+          if (!r.ok) throw new Error("geo");
+          return r.json();
+        })
+        .then(function (data) {
+          var code = String(data.country_code || data.country || "").toUpperCase();
+          if (code && code !== "CN") showBlocked();
+          else allow();
+        })
+        .catch(function () {
+          allow();
+        });
+    })();
+  </script>
   <div class="page">
     <header class="hero">
       <p class="brand">育才托管</p>
