@@ -271,6 +271,23 @@
       box-shadow: 0 8px 20px rgba(0, 122, 65, 0.25);
     }
 
+    .signup-qr {
+      display: block;
+      width: min(100%, 320px);
+      height: auto;
+      margin: 0 auto 14px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(0, 80, 40, 0.08);
+    }
+
+    .signup-tip {
+      margin: 0 0 14px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
     .foot {
       margin: 22px 18px 0;
       text-align: center;
@@ -402,10 +419,12 @@
       </section>
 
       <section class="panel" aria-labelledby="sign-title">
-        <h2 id="sign-title">报名咨询</h2>
-        <p class="about" style="margin-bottom:14px;">有意参加请联系招生老师报名，名额与最终行程以老师通知为准。</p>
+        <h2 id="sign-title">报名</h2>
+        <p class="about" style="margin-bottom:14px;text-align:center;">微信扫码或长按识别，填写秋游报名表</p>
+        <img class="signup-qr" src="./images/web/signup-qr.png" alt="秋游（松鼠王国）报名表二维码" width="900" height="1026" loading="lazy">
+        <p class="signup-tip">也可电话咨询报名</p>
         <div class="cta">
-          <a class="phone" href="tel:13680628630">电话报名 13680628630</a>
+          <a class="phone" href="tel:13680628630">电话 13680628630</a>
         </div>
       </section>
     </main>
